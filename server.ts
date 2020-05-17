@@ -51,14 +51,5 @@ app.get(
 
 // All regular routes use the Universal engine
 app.get('*', (req, res) => {
-  res.render('index', { req, res }, (err, html) => {
-    if (html) {
-      if (req.headers.host.indexOf('amazonaws.com') > 0) {
-        html = html.replace('<base href="/', '<base href="/dev/');
-      }
-      res.send(html);
-    } else {
-      res.send(err);
-    }
-  });
+  res.render('index.html', { req, res });
 });

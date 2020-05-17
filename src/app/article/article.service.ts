@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { pluck } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +9,6 @@ export class ArticleService {
   public constructor(private readonly http: Http) {}
 
   public fetch() {
-    return this.http.get('http://localhost:3000/articles');
+    return this.http.get(`${environment.apiEndPoint}/articles`);
   }
 }
