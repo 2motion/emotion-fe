@@ -72,7 +72,7 @@
     "protractor": "5.4.2",
     "serverless": "1.60.5",
     "serverless-apigw-binary": "0.4.4",
-    "serverless-domain-manager": "4.0.1",
+    "serverless-domain-manager": "4.1.0",
     "serverless-offline": "5.12.1",
     "ts-loader": "5.4.5",
     "ts-node": "8.3.0",
