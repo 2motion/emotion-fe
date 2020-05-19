@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { ArticleComponent } from './article/article.component';
+import { NotfoundComponent } from './shared/notfound/notfound.component';
+import { NotfoundModule } from './shared/notfound/notfound.module';
+
 
 const routes: Routes = [
   {
@@ -8,16 +11,17 @@ const routes: Routes = [
     component: ArticleComponent,
   },
   {
-    path: 'test',
-    component: ArticleComponent,
+    path: '**',
+    redirectTo: '404'
+  },
+  {
+    path: '404',
+    component: NotfoundComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    preloadingStrategy: PreloadAllModules,
-    initialNavigation: 'enabled',
-})],
-  exports: [RouterModule],
+  imports: [RouterModule.forRoot(routes), NotfoundModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

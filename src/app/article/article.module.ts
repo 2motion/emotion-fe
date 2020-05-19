@@ -4,6 +4,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { ArticleComponent } from './article.component';
+import { NzResultModule } from 'ng-zorro-antd/result';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { ArticleComponent } from './article.component';
     CommonModule,
     NzLayoutModule,
     NzEmptyModule,
-    NzSkeletonModule
+    NzSkeletonModule,
   ],
 })
 export class ArticleModule { }
