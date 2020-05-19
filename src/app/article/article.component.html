@@ -1,0 +1,28 @@
+<nz-layout>
+  <nz-content>
+    <section *ngIf="(isLoadingEntites$ | async)" class="inner-content">
+      <nz-skeleton [nzActive]="true"></nz-skeleton>
+      <nz-skeleton [nzActive]="true"></nz-skeleton>
+    </section>
+    <section *ngIf="(artciles$ | async)?.length > 0" class="inner-content">
+      <ul>
+        <li *ngFor="let article of artciles$ | async" routerLink="/d">
+          <div>
+          </div>
+          <div>
+            <h4>
+              {{article.title}}
+            </h4>
+            <p>
+              {{article.body}}
+            </p>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section *ngIf="(artciles$ | async)?.length==0" class="inner-content">
+      <nz-empty>
+      </nz-empty>
+    </section>
+  </nz-content>
+</nz-layout>
