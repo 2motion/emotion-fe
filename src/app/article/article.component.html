@@ -1,4 +1,4 @@
-<nz-layout>
+<nz-layout class="content">
   <nz-content>
     <section *ngIf="(isLoadingEntites$ | async)" class="inner-content">
       <nz-skeleton [nzActive]="true"></nz-skeleton>
@@ -20,7 +20,7 @@
         </li>
       </ul>
     </section>
-    <section *ngIf="(artciles$ | async)?.length==0" class="inner-content">
+    <section *ngIf="!(isLoadingEntites$ | async) && (artciles$ | async)?.length==0" class="inner-content">
       <nz-empty>
       </nz-empty>
     </section>

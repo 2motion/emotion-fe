@@ -22,6 +22,13 @@ import { FooterModule } from './footer/footer.module';
 import {
   SharedModule,
 } from './shared';
+import { FloatingPointModule } from './floating-point/floating-point.module';
+import { IconDefinition } from '@ant-design/icons-angular';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { AccountBookFill, AlertFill, AlertOutline } from '@ant-design/icons-angular/icons';
+import { HeaderModule } from './header/header.module';
+
+const icons: IconDefinition[] = [ AccountBookFill, AlertOutline, AlertFill ];
 
 registerLocaleData(ko);
 
@@ -32,9 +39,12 @@ registerLocaleData(ko);
   imports: [
     HttpModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    NzIconModule.forRoot(icons),
     SharedModule,
     AppRoutingModule,
+    HeaderModule,
     FooterModule,
+    FloatingPointModule,
     ArticleModule,
     StoreModule.forRoot({
       article: ArtcileReducer,
