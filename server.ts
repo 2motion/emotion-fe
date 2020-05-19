@@ -38,10 +38,6 @@ app.engine('html', (_, options, callback) => {
 
 app.set('view engine', 'html');
 app.set('views', DIST_FOLDER);
-
-// Example Express Rest API endpoints
-// app.get('/api/**', (req, res) => { });
-// Serve static files from /browser
 app.get(
   '*.*',
   express.static(DIST_FOLDER, {
@@ -49,7 +45,6 @@ app.get(
   }),
 );
 
-// All regular routes use the Universal engine
 app.get('*', (req, res) => {
-  res.render('index.html', { req, res });
+    res.render('index', { req });
 });
