@@ -13,12 +13,12 @@ import ArticleModel from './model/article.model';
 export class ArticleComponent implements OnInit {
   public artciles$: Observable<ArticleModel[]>;
   public isLoadingEntites$: Observable<boolean>
-  public constructor(private articleStore: Store<AppState>) {
-    this.artciles$ = this.articleStore.select(state => state.article.entities);
-    this.isLoadingEntites$ = this.articleStore.select(state => state.article.isLoadingEntites);
+  public constructor(private store: Store<AppState>) {
+    this.artciles$ = this.store.select(state => state.article.entities);
+    this.isLoadingEntites$ = this.store.select(state => state.article.isLoadingEntites);
   }
 
   public ngOnInit(): void {
-    this.articleStore.dispatch(new ArticleActions.FetchAction({}));
+    this.store.dispatch(new ArticleActions.FetchAction({}));
   }
 }

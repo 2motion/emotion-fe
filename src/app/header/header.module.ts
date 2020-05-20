@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { AuthenticationModule } from '../authentication/authentication.module';
 
 
 @NgModule({
@@ -10,7 +12,9 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
   imports: [
     CommonModule,
     NzButtonModule,
-    NzLayoutModule
+    NzLayoutModule,
+    NzModalModule,
+    AuthenticationModule
   ],
   exports: [HeaderComponent]
 })

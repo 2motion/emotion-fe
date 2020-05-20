@@ -1,11 +1,16 @@
 <header>
+    <div *ngIf="(isVisibleAuthenticateModal$ | async)">
+        <nz-modal [(nzVisible)]="isVisibleAuthenticateModal$" [nzClosable]="false" [nzFooter]="null" [nzBodyStyle]="{padding: 0}">
+            <app-authentication></app-authentication>
+        </nz-modal>
+    </div>
     <nz-layout class="content">
         <nz-content>
             <h1>
                 :p
             </h1>
             <section class="button-set">
-                <button nz-button nzType="primary" class="login-button">
+                <button nz-button nzType="primary" class="login-button" (click)="visibleAuthenticateModal()">
                     로그인
                 </button>
                 <button nz-button nzType="default" class="login-button">
