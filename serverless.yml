@@ -29,6 +29,8 @@ custom:
   customDomain:
     domainName: www.gamstagram.com
     certificateName: '*.gamstagram.com'
+    basePath: ''
+    stage: ${self:provider.stage}
     createRoute53Record: true
     endpointType: 'regional'
   apigwBinary:
