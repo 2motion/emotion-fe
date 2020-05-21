@@ -8,6 +8,8 @@ import { join } from 'path';
 
 // Express server
 export const app = express();
+const PORT = process.env.PORT || 4000;
+
 
 app.use(compression());
 app.use(cors());

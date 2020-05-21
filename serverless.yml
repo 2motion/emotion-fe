@@ -8,8 +8,9 @@ plugins:
 provider:
   name: aws
   runtime: nodejs12.x
-  memorySize: 192
+  memorySize: 512
   timeout: 10
+  region: ap-northeast-2
   stage: ${opt:stage, 'dev'}
 
 package:
