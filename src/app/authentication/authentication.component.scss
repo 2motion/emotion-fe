@@ -2,7 +2,7 @@ section {
   position: relative;
   overflow: hidden;
   display: flex;
-  width: 606px;
+  width: 660px;
   height: 480px;
   box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 12px 0px;
   display: flex;
@@ -24,6 +24,9 @@ section {
       flex: 1 1 0%;
       background: white;
       padding: 1.5rem;
+      h2 {
+        margin-top: 80px;
+      }
     }
   }
 }
