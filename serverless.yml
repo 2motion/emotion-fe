@@ -1,4 +1,4 @@
-service: gamstagram
+service: gamstagram-fe
 
 plugins:
   - serverless-apigw-binary
@@ -11,7 +11,6 @@ provider:
   memorySize: 512
   timeout: 10
   region: ap-northeast-2
-  stage: ${opt:stage, 'dev'}
 
 package:
   exclude:
