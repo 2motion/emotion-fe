@@ -11,7 +11,6 @@ provider:
   memorySize: 512
   timeout: 10
   region: ap-northeast-2
-  stage: ${self:provider.stage}
 
 package:
   exclude:
@@ -31,7 +30,7 @@ custom:
     domainName: www.gamstagram.com
     certificateName: '*.gamstagram.com'
     basePath: ''
-    stage: ${self:provider.stage}
+    stage: dev
     createRoute53Record: true
     endpointType: 'regional'
   apigwBinary:
