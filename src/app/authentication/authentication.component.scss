@@ -2,9 +2,9 @@ section {
   position: relative;
   overflow: hidden;
   display: flex;
+  margin: 90px auto auto auto;
   width: 660px;
   height: 480px;
-  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 12px 0px;
   display: flex;
   > div {
     &:first-child {
@@ -15,7 +15,6 @@ section {
       justify-content: center;
       -webkit-box-align: center;
       align-items: center;
-      background: rgb(241, 243, 245);
       padding: 1.5rem;
     }
     &:last-child {

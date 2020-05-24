@@ -1,19 +1,16 @@
 <header>
-    <div *ngIf="(isVisibleAuthenticateModal$ | async)">
-        <nz-modal [(nzVisible)]="isVisibleAuthenticateModal$" [nzClosable]="false" [nzFooter]="null" [nzBodyStyle]="{padding: 0}">
-            <app-authentication></app-authentication>
-        </nz-modal>
-    </div>
     <nz-layout class="content">
         <nz-content>
             <h1>
-                :p
+                <a [routerLink]="['/']">
+                    :p
+                </a>
             </h1>
             <section class="button-set">
-                <button nz-button nzType="primary" class="login-button" (click)="visibleAuthenticateModal()">
+                <button nz-button nzType="primary" class="login-button" [routerLink]="['/login']" [state]="{tracingId: 123}">
                     로그인
                 </button>
-                <button nz-button nzType="default" class="login-button">
+                <button nz-button nzType="default" class="login-button" [routerLink]="['/sign-up']" [state]="{tracingId: 1234}">
                     회원가입 
                 </button>
             </section>

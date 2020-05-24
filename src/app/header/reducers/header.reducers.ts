@@ -22,6 +22,7 @@ export function reducer(state = initialState, action: HeadersAction.Actions): St
         isVisibleAuthenticateModal: true
       };
     case HeadersAction.VISIBLE_AUTHENTICATE_MODAL_FAILED:
+    case HeadersAction.HIDDEN_AUTHENTICATE_MODAL:
       return {
         ...state,
         isVisibleAuthenticateModal: false

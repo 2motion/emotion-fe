@@ -1,9 +1,9 @@
 import { Action } from '@ngrx/store';
 import ArticleModel from '../model/article.model';
 
-export const FETCH = '[Article] Fetch';
-export const FETCH_SUCCESS = '[Article] Fetch SUCCESS';
-export const FETCH_FAILED = '[Article] Fetch FAILED';
+export const FETCH = '[Article] FETCH';
+export const FETCH_SUCCESS = '[Article] FETCH_SUCCESS';
+export const FETCH_FAILED = '[Article] FETCH_FAILED';
 
 export class FetchAction implements Action {
   public readonly type = FETCH;

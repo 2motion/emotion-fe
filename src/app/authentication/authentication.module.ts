@@ -4,6 +4,7 @@ import { AuthenticationComponent } from './authentication.component';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     CommonModule,
     NzFormModule,
     NzButtonModule,
-    NzInputModule
+    NzInputModule,
+    ReactiveFormsModule
   ],
   exports: [
     AuthenticationComponent

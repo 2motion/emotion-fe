@@ -19,6 +19,7 @@ import { ArticleModule } from './article/article.module';
 import { ArticleEffects } from './article/effects/article.effects';
 import { reducer as ArtcileReducer } from './article/reducers/article.reducer';
 import { reducer as HeaderReducer } from './header/reducers/header.reducers';
+import { reducer as AuthenticationReducer} from './authentication/reducers/authentication.reducer';
 import { FooterModule } from './footer/footer.module';
 import {
   SharedModule,
@@ -29,6 +30,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { AccountBookFill, AlertFill, AlertOutline } from '@ant-design/icons-angular/icons';
 import { HeaderModule } from './header/header.module';
 import { HeaderEffects } from './header/effects/header.effects';
+import { AuthenticationEffects } from './authentication/effects/authentication.effects';
 
 const icons: IconDefinition[] = [ AccountBookFill, AlertOutline, AlertFill ];
 
@@ -51,11 +53,13 @@ registerLocaleData(ko);
     StoreModule.forRoot({
       article: ArtcileReducer,
       header: HeaderReducer,
+      authentication: AuthenticationReducer,
       router: routerReducer,
     }),
     EffectsModule.forRoot([
       ArticleEffects,
-      HeaderEffects
+      HeaderEffects,
+      AuthenticationEffects
     ]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),

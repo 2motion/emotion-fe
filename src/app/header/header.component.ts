@@ -20,4 +20,8 @@ export class HeaderComponent implements OnInit {
   public visibleAuthenticateModal() {
     this.store.dispatch(new HeaderActions.VisibleAuthenticateModalAction());
   }
+
+  public hiddenAuthenticateModal() {
+    this.store.dispatch(new HeaderActions.HiddenAuthenticateModalAction());
+  }
 }

@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from '../app.state';
+import { Observable } from 'rxjs';
+import * as AuthenticationActions from './actions/authentication.actions';
 
 
 @Component({
@@ -9,22 +14,46 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AuthenticationComponent implements OnInit {
   public validateForm!: FormGroup;
+  public isLoginRoute: boolean;
+  public isSignUpRoute: boolean;
 
-  constructor(private fb: FormBuilder) { }
+  public constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private store: Store<AppState>
+    ) { 
+      const parser = document.createElement('a');
+      parser.href = this.router.url;
+    }
 
-  submitForm(): void {
+  public submitForm(): void {
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
+
+    this.store.dispatch(new AuthenticationActions.SignUpAction(this.validateForm.value));
   }
 
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    const parser = document.createElement('a');
+    parser.href = this.router.url
+    
+    if (parser.pathname === '/login') {
+      this.isLoginRoute = true;
+      this.isSignUpRoute = false;
+    }
+
+    if (parser.pathname === '/sign-up') {
+      this.isSignUpRoute = true;
+      this.isLoginRoute = false;
+    }
+
     this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
+      id: [null, [Validators.required]],
       password: [null, [Validators.required]],
-      remember: [true]
+      name: [null, [Validators.required]],
     });
   }
 

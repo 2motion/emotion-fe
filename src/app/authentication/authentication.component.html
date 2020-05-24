@@ -1,26 +1,33 @@
 <section>
   <div>
     <h2>
-      🤗
+      😀
     </h2>
     <h2>
-      어서오세요.
+      {{ isLoginRoute ? '어서오세요.' : '환영합니다.' }}
     </h2>
   </div>
   <div>
     <h2>
-      로그인
+      {{ isLoginRoute ? '로그인' : '회원 가입' }}
     </h2>
-    <form nz-form class="login-form" (ngSubmit)="submitForm()">
+    <form nz-form class="login-form" [formGroup]="validateForm" (ngSubmit)="submitForm()">
       <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your username!">
+        <nz-form-control nzErrorTip="이메일 또는 핸드폰 번호를 입력해주세요.">
           <nz-input-group nzPrefixIcon="user">
-            <input type="text" nz-input formControlName="userName" placeholder="이메일 또는 핸드폰 번호" />
+            <input type="text" nz-input formControlName="id" placeholder="이메일 또는 핸드폰 번호" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item *ngIf="isSignUpRoute">
+        <nz-form-control nzErrorTip="이름을 입력해주세요.">
+          <nz-input-group nzPrefixIcon="smile">
+            <input type="text" nz-input formControlName="name" placeholder="이름" />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-form-control nzErrorTip="비밀번호를 입력해주세요.">
           <nz-input-group nzPrefixIcon="lock">
             <input type="password" nz-input formControlName="password" placeholder="비밀번호" />
           </nz-input-group>

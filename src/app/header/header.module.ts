@@ -5,6 +5,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { AuthenticationModule } from '../authentication/authentication.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { AuthenticationModule } from '../authentication/authentication.module';
     NzButtonModule,
     NzLayoutModule,
     NzModalModule,
-    AuthenticationModule
+    AuthenticationModule,
+    RouterModule
   ],
   exports: [HeaderComponent]
 })
