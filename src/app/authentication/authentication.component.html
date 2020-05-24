@@ -1,18 +1,43 @@
 <section>
   <div>
-    <h2>
-      😀
+    <h2 *ngIf="isLoginRoute">
+      😁
     </h2>
-    <h2>
+    <h2 *ngIf="isSignUpRoute">
+      🤗
+    </h2>
+    <h2 *ngIf="isVerifyRoute">
+      🥳
+    </h2>
+    <h2 *ngIf="isVerifyRoute">
+      인증을 끝내주세요.
+    </h2>
+    <h2 *ngIf="isLoginRoute || isSignUpRoute">
       {{ isLoginRoute ? '어서오세요.' : '환영합니다.' }}
     </h2>
+    <h3 *ngIf="isLoginRoute || isSignUpRoute">
+      순간의 감정을 기록하고, 공유하세요.
+    </h3>
   </div>
   <div>
-    <h2>
+    <h2 *ngIf="isVerifyRoute">
+      인증하기
+    </h2>
+    <h2 *ngIf="isLoginRoute || isSignUpRoute">
       {{ isLoginRoute ? '로그인' : '회원 가입' }}
     </h2>
     <nz-spin [nzSpinning]="loadingForm$ | async" [nzDelay]="500">
-      <form nz-form class="login-form" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <form nz-form [formGroup]="validateForm" (ngSubmit)="submitVerifyForm()" *ngIf="isVerifyRoute">
+        <nz-form-item>
+          <nz-form-control nzErrorTip="인증 번호를 입력해주세요.">
+            <nz-input-group nzPrefixIcon="user">
+              <input type="number" nz-input formControlName="hashKey" placeholder="인증번호" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" class="authenticate-button">로그인</button>
+      </form>
+      <form nz-form [formGroup]="validateForm" (ngSubmit)="isLoginRoute ? submitLoginForm() : submitSignUpForm()" *ngIf="isLoginRoute || isSignUpRoute">
         <nz-form-item>
           <nz-form-control nzErrorTip="이메일 또는 핸드폰 번호를 입력해주세요.">
             <nz-input-group nzPrefixIcon="user">
@@ -34,12 +59,12 @@
             </nz-input-group>
           </nz-form-control>
         </nz-form-item>
-        <div nz-row class="login-form-margin" class="forgot-password">
+        <div nz-row class="login-form-margin" class="forgot-password" *ngIf="isLoginRoute">
           <div nz-col [nzSpan]="12">
             <a class="login-form-forgot">비밀번호를 잃어버리셨나요?</a>
           </div>
         </div>
-        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" class="login-button">로그인</button>
+        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" class="authenticate-button">로그인</button>
       </form>
     </nz-spin>
   </div>

@@ -14,8 +14,9 @@ import * as AuthenticationActions from './actions/authentication.actions';
 })
 export class AuthenticationComponent implements OnInit {
   public validateForm!: FormGroup;
-  public isLoginRoute: boolean;
-  public isSignUpRoute: boolean;
+  public isLoginRoute: boolean = false;
+  public isSignUpRoute: boolean = false;
+  public isVerifyRoute: boolean = false;
   public loadingForm$ : Observable<boolean>;
 
   public constructor(
@@ -26,7 +27,7 @@ export class AuthenticationComponent implements OnInit {
       this.loadingForm$ = this.store.select(store => store.authentication.isLoadingForm);
     }
 
-  public submitForm(): void {
+  public submitSignUpForm(): void {
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
@@ -42,6 +43,36 @@ export class AuthenticationComponent implements OnInit {
     }));
   }
 
+  public submitLoginForm(): void {
+    for (const i in this.validateForm.controls) {
+      this.validateForm.controls[i].markAsDirty();
+      this.validateForm.controls[i].updateValueAndValidity();
+    }
+
+    const emailReg = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    const {id, password} = this.validateForm.value;
+
+    this.store.dispatch(new AuthenticationActions.CreateTokenAction({
+      password,
+      ...( emailReg.test(id) ? {email: id} : {phoneNumber: id})
+    }));
+  }
+
+  public submitVerifyForm(): void {
+    for (const i in this.validateForm.controls) {
+      this.validateForm.controls[i].markAsDirty();
+      this.validateForm.controls[i].updateValueAndValidity();
+    }
+
+    const {hashKey} = this.validateForm.value;
+
+    this.store.dispatch(new AuthenticationActions.VerifyAction({
+      verifyId: this.router.routerState.snapshot.root.queryParams.verifyId,
+      hashKeyPair: this.router.routerState.snapshot.root.queryParams.hashKeyPair,
+      hashKey
+    }));
+  }
+
 
   public ngOnInit(): void {
     const parser = document.createElement('a');
@@ -50,10 +81,18 @@ export class AuthenticationComponent implements OnInit {
     if (parser.pathname === '/login') {
       this.isLoginRoute = true;
       this.isSignUpRoute = false;
+      this.isVerifyRoute = false;
     }
 
     if (parser.pathname === '/sign-up') {
       this.isSignUpRoute = true;
+      this.isLoginRoute = false;
+      this.isVerifyRoute = false;
+    }
+
+    if (parser.pathname === '/verify') {
+      this.isVerifyRoute = true;
+      this.isSignUpRoute = false;
       this.isLoginRoute = false;
     }
 
@@ -61,6 +100,7 @@ export class AuthenticationComponent implements OnInit {
       id: [null, [Validators.required]],
       password: [null, [Validators.required]],
       name: [null, [Validators.required]],
+      hashKey: [null, [Validators.required]],
     });
   }
 

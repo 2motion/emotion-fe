@@ -17,6 +17,24 @@ export function reducer(state = initialState, action: AuthenticationAction.Actio
           isLoadingForm: true
         }
       }
+    case AuthenticationAction.CREATE_TOKEN_ACTION:
+      return {
+        ...state,
+        ...{
+          isLoadingForm: true
+        }
+      }
+    case AuthenticationAction.VERIFY_ACTION:
+      return {
+        ...state,
+        ...{
+          isLoadingForm: true
+        }
+      }
+    case AuthenticationAction.CREATE_TOKEN_FAILED_ACTION:
+    case AuthenticationAction.CREATE_TOKEN_SUCCESS_ACTION:
+    case AuthenticationAction.VERIFY_FAILED_ACTION:
+    case AuthenticationAction.VERIFY_SUCCESS_ACTION:
     case AuthenticationAction.SIGN_UP_FAILED_ACTION:
     case AuthenticationAction.SIGN_UP_SUCCESS_ACTION:
       return {

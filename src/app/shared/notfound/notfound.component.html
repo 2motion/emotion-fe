@@ -1,5 +1,7 @@
-<nz-result nzStatus="404" nzTitle="404" nzSubTitle="Sorry, the page you visited does not exist.">
+<nz-result nzStatus="404" nzTitle="404" nzSubTitle="앗, 알 수 없는 페이지에요. 😥">
     <div nz-result-extra>
-      <button nz-button nzType="primary">Back Home</button>
+      <button nz-button nzType="primary" [routerLink]="['/']">
+        홈으로 돌아가기
+      </button>
     </div>
   </nz-result>

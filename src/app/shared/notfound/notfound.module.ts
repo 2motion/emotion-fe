@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NotfoundComponent } from './notfound.component';
 import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
   imports: [
     CommonModule,
     NzResultModule,
-    NzButtonModule
+    NzButtonModule,
+    RouterModule
   ],
   exports: [
     NotfoundComponent

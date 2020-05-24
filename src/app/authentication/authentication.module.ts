@@ -6,7 +6,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
 
 @NgModule({
   declarations: [AuthenticationComponent],
@@ -16,7 +16,8 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     NzButtonModule,
     NzInputModule,
     ReactiveFormsModule,
-    NzSpinModule
+    NzSpinModule,
+    NzNotificationModule
   ],
   exports: [
     AuthenticationComponent

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiEndPoint: 'https://api.gamstagram.com'
+  // apiEndPoint: 'https://api.gamstagram.com',
+  apiEndPoint: 'http://localhost:3000',
 };
 
 /*

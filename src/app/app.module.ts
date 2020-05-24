@@ -24,13 +24,14 @@ import { FooterModule } from './footer/footer.module';
 import {
   SharedModule,
 } from './shared';
-import { FloatingPointModule } from './floating-point/floating-point.module';
 import { IconDefinition } from '@ant-design/icons-angular';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { AccountBookFill, AlertFill, AlertOutline } from '@ant-design/icons-angular/icons';
 import { HeaderModule } from './header/header.module';
 import { HeaderEffects } from './header/effects/header.effects';
 import { AuthenticationEffects } from './authentication/effects/authentication.effects';
+import { WriteModule } from './write/write.module';
+import { ProfileModule } from './profile/profile.module';
 
 const icons: IconDefinition[] = [ AccountBookFill, AlertOutline, AlertFill ];
 
@@ -48,8 +49,9 @@ registerLocaleData(ko);
     AppRoutingModule,
     HeaderModule,
     FooterModule,
-    FloatingPointModule,
     ArticleModule,
+    WriteModule,
+    ProfileModule,
     StoreModule.forRoot({
       article: ArtcileReducer,
       header: HeaderReducer,
