@@ -11,34 +11,36 @@
     <h2>
       {{ isLoginRoute ? '로그인' : '회원 가입' }}
     </h2>
-    <form nz-form class="login-form" [formGroup]="validateForm" (ngSubmit)="submitForm()">
-      <nz-form-item>
-        <nz-form-control nzErrorTip="이메일 또는 핸드폰 번호를 입력해주세요.">
-          <nz-input-group nzPrefixIcon="user">
-            <input type="text" nz-input formControlName="id" placeholder="이메일 또는 핸드폰 번호" />
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item *ngIf="isSignUpRoute">
-        <nz-form-control nzErrorTip="이름을 입력해주세요.">
-          <nz-input-group nzPrefixIcon="smile">
-            <input type="text" nz-input formControlName="name" placeholder="이름" />
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control nzErrorTip="비밀번호를 입력해주세요.">
-          <nz-input-group nzPrefixIcon="lock">
-            <input type="password" nz-input formControlName="password" placeholder="비밀번호" />
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
-      <div nz-row class="login-form-margin" class="forgot-password">
-        <div nz-col [nzSpan]="12">
-          <a class="login-form-forgot">비밀번호를 잃어버리셨나요?</a>
+    <nz-spin [nzSpinning]="loadingForm$ | async" [nzDelay]="500">
+      <form nz-form class="login-form" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <nz-form-item>
+          <nz-form-control nzErrorTip="이메일 또는 핸드폰 번호를 입력해주세요.">
+            <nz-input-group nzPrefixIcon="user">
+              <input type="text" nz-input formControlName="id" placeholder="이메일 또는 핸드폰 번호" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item *ngIf="isSignUpRoute">
+          <nz-form-control nzErrorTip="이름을 입력해주세요.">
+            <nz-input-group nzPrefixIcon="smile">
+              <input type="text" nz-input formControlName="name" placeholder="이름" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="비밀번호를 입력해주세요.">
+            <nz-input-group nzPrefixIcon="lock">
+              <input type="password" nz-input formControlName="password" placeholder="비밀번호" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <div nz-row class="login-form-margin" class="forgot-password">
+          <div nz-col [nzSpan]="12">
+            <a class="login-form-forgot">비밀번호를 잃어버리셨나요?</a>
+          </div>
         </div>
-      </div>
-      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" class="login-button">로그인</button>
-    </form>
+        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" class="login-button">로그인</button>
+      </form>
+    </nz-spin>
   </div>
 </section>

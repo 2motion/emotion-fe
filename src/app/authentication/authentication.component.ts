@@ -16,14 +16,14 @@ export class AuthenticationComponent implements OnInit {
   public validateForm!: FormGroup;
   public isLoginRoute: boolean;
   public isSignUpRoute: boolean;
+  public loadingForm$ : Observable<boolean>;
 
   public constructor(
     private fb: FormBuilder,
     private router: Router,
     private store: Store<AppState>
     ) { 
-      const parser = document.createElement('a');
-      parser.href = this.router.url;
+      this.loadingForm$ = this.store.select(store => store.authentication.isLoadingForm);
     }
 
   public submitForm(): void {
@@ -32,7 +32,14 @@ export class AuthenticationComponent implements OnInit {
       this.validateForm.controls[i].updateValueAndValidity();
     }
 
-    this.store.dispatch(new AuthenticationActions.SignUpAction(this.validateForm.value));
+    const emailReg = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    const {id, name, password} = this.validateForm.value;
+
+    this.store.dispatch(new AuthenticationActions.SignUpAction({
+      name,
+      password,
+      ...( emailReg.test(id) ? {email: id} : {phoneNumber: id})
+    }));
   }
 
 
