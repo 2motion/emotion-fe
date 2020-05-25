@@ -26,3 +26,11 @@ header {
         }
     }
 }
+
+
+@media (max-width: 767px) {
+    header {
+        width: calc(100% - 2rem);
+        margin: auto;
+    }
+}

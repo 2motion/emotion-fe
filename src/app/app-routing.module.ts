@@ -34,6 +34,10 @@ const routes: Routes = [
     component: ProfileComponent
   },
   {
+    path: 'p/:id/:name',
+    component: ArticleComponent
+  },
+  {
     path: '**',
     redirectTo: '404'
   },

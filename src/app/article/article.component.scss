@@ -69,3 +69,11 @@ ul {
     }
   }
 }
+
+@media (max-width: 767px) {
+  ul {
+    li {
+      width: calc(100% - 2rem);
+    }
+  }
+}

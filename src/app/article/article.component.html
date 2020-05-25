@@ -6,7 +6,7 @@
     </section>
     <section *ngIf="(artciles$ | async)?.length > 0" class="inner-content">
       <ul>
-        <li *ngFor="let article of artciles$ | async" routerLink="/d">
+        <li *ngFor="let article of artciles$ | async" [routerLink]="['/p/' + article.id + '/' + article.title]">
           <div>
             <img src="https://www.hax0r.info/assets/images/optimized/freeeeeeee.jpg">
           </div>
