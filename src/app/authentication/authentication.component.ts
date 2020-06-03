@@ -44,9 +44,7 @@ export class AuthenticationComponent implements OnInit {
   }
 
   public switchUpSignIn() {
-    this.isVerifyRoute = false;
-    this.isSignUpRoute = false;
-    this.isLoginRoute = true;
+    this.router.navigateByUrl('/login')
   }
 
   public submitLoginForm(): void {
