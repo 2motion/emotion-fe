@@ -19,6 +19,10 @@ export class AuthenticationService {
     return this.http.post(`${environment.apiEndPoint}/authentication/verify`, payload);
   }
 
+  public fetchProfile() {
+    return this.http.get(`${environment.apiEndPoint}/me`);
+  }
+
   public createToken(payload: CreateTokenPayloadModel) {
     return this.http.post(`${environment.apiEndPoint}/authentication/token`, payload);
   }

@@ -43,6 +43,12 @@ export class AuthenticationComponent implements OnInit {
     }));
   }
 
+  public switchUpSignIn() {
+    this.isVerifyRoute = false;
+    this.isSignUpRoute = false;
+    this.isLoginRoute = true;
+  }
+
   public submitLoginForm(): void {
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();

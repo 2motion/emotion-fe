@@ -1,11 +1,14 @@
 import * as AuthenticationAction from '../actions/authentication.actions';
+import ProfileModel from '../model/profile.model';
 
 export interface State {
   isLoadingForm: boolean;
+  profile: ProfileModel
 }
 
 export const initialState: State = {
   isLoadingForm: false,
+  profile: {}
 };
 
 export function reducer(state = initialState, action: AuthenticationAction.Actions): State {
@@ -29,6 +32,21 @@ export function reducer(state = initialState, action: AuthenticationAction.Actio
         ...state,
         ...{
           isLoadingForm: true
+        }
+      }
+    case AuthenticationAction.FETCH_PROFILE_ACTION:
+    case AuthenticationAction.FETCH_PROFILE_FAILED_ACTION:
+      return {
+        ...state,
+        ...{
+          profile: {}
+        }
+      }
+    case AuthenticationAction.FETCH_PROFILE_SUCCESS_ACTION:
+      return {
+        ...state,
+        ...{
+          profile: action.payload
         }
       }
     case AuthenticationAction.CREATE_TOKEN_FAILED_ACTION:

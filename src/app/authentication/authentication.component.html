@@ -59,6 +59,11 @@
             </nz-input-group>
           </nz-form-control>
         </nz-form-item>
+        <div nz-row class="login-form-margin" class="already-exists" *ngIf="isSignUpRoute">
+          <div nz-col [nzSpan]="12">
+            <a class="login-form-forgot" (click)="switchUpSignIn()">이미 계정이 있으신가요?</a>
+          </div>
+        </div>
         <div nz-row class="login-form-margin" class="forgot-password" *ngIf="isLoginRoute">
           <div nz-col [nzSpan]="12">
             <a class="login-form-forgot">비밀번호를 잃어버리셨나요?</a>

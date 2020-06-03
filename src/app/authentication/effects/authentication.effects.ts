@@ -16,7 +16,7 @@ export class AuthenticationEffects {
     private router: Router
   ) {}
 
-  public $signUp = createEffect(() => this.actions$.pipe(
+  public signUp$ = createEffect(() => this.actions$.pipe(
     ofType(AuthenticationAction.SIGN_UP_ACTION),
     exhaustMap(({payload}) => {
       return this.service.signUp(payload).pipe(
@@ -38,7 +38,7 @@ export class AuthenticationEffects {
     }),
   ));
 
-  public $createToken = createEffect(() => this.actions$.pipe(
+  public createToken$ = createEffect(() => this.actions$.pipe(
     ofType(AuthenticationAction.CREATE_TOKEN_ACTION),
     exhaustMap(({payload}) => {
       return this.service.createToken(payload).pipe(
@@ -57,7 +57,24 @@ export class AuthenticationEffects {
     }),
   ));
 
-  public $verify = createEffect(() => this.actions$.pipe(
+  public fetchProfile$ = createEffect(() => this.actions$.pipe(
+    ofType(AuthenticationAction.FETCH_PROFILE_ACTION),
+    exhaustMap(({payload}) => {
+      return this.service.verify(payload).pipe(
+          map(() => {
+            this.router.navigate(['/']);
+            return new AuthenticationAction.VerifySuccessAction();
+          }),
+          catchError((error) => {
+            console.log(error);
+            this.notificationService.error('오류', '인증 중 오류가 발생했습니다.');
+            return of(new AuthenticationAction.VerifyFailedAction(error));
+          })
+        );
+    }),
+  ));
+
+  public verify$ = createEffect(() => this.actions$.pipe(
     ofType(AuthenticationAction.VERIFY_ACTION),
     exhaustMap(({payload}) => {
       return this.service.verify(payload).pipe(

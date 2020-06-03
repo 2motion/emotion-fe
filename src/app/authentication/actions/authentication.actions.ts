@@ -3,6 +3,7 @@ import SignUpPayloadModel from '../model/sign-up-payload.model';
 import SignUpSuccessPayloadModel from '../model/sign-up-success-payload.model';
 import VerifyPayloadModel from '../model/verify-payload.model';
 import CreateTokenPayloadModel from '../model/create-token-payload.model';
+import ProfileModel from '../model/profile.model';
 
 export const SIGN_UP_ACTION = '[Authentication] SIGN_UP_ACTION';
 export const SIGN_UP_SUCCESS_ACTION = '[Authentication] SIGN_UP_SUCCESS_ACTION';
@@ -13,6 +14,9 @@ export const VERIFY_FAILED_ACTION = '[Authentication] VERIFY_FAILED_ACTION';
 export const CREATE_TOKEN_ACTION = '[Authentication] CREATE_TOKEN_ACTION';
 export const CREATE_TOKEN_SUCCESS_ACTION = '[Authentication] CREATE_TOKEN_SUCCESS_ACTION';
 export const CREATE_TOKEN_FAILED_ACTION = '[Authentication] CREATE_TOKEN_FAILED_ACTION';
+export const FETCH_PROFILE_ACTION = '[Authentication] FETCH_PROFILE_ACTION';
+export const FETCH_PROFILE_SUCCESS_ACTION = '[Authentication] FETCH_PROFILE_SUCCESS_ACTION';
+export const FETCH_PROFILE_FAILED_ACTION = '[Authentication] FETCH_PROFILE_FAILED_ACTION';
 
 export class SignUpAction implements Action {
   public readonly type = SIGN_UP_ACTION;
@@ -59,4 +63,30 @@ export class CreateTokenFailedAction implements Action {
   public constructor(public error) { }
 }
 
-export type Actions = SignUpAction | SignUpSuccessAction | SignUpFailedAction | VerifyAction | VerifySuccessAction | VerifyFailedAction | CreateTokenAction | CreateTokenSuccessAction | CreateTokenFailedAction;
+export class FetchProfileAction implements Action {
+  public readonly type = FETCH_PROFILE_ACTION;
+  public constructor(public payload: SignUpPayloadModel) { }
+}
+
+export class FetchProfileSuccessAction implements Action {
+  public readonly type = FETCH_PROFILE_SUCCESS_ACTION;
+  public constructor(public payload: ProfileModel) { }
+}
+
+export class FetchProfileFailedAction implements Action {
+  public readonly type = FETCH_PROFILE_FAILED_ACTION;
+  public constructor(public error) { }
+}
+
+export type Actions = SignUpAction |
+                      SignUpSuccessAction | 
+                      SignUpFailedAction | 
+                      VerifyAction | 
+                      VerifySuccessAction | 
+                      VerifyFailedAction | 
+                      CreateTokenAction | 
+                      CreateTokenSuccessAction | 
+                      CreateTokenFailedAction |
+                      FetchProfileAction |
+                      FetchProfileSuccessAction |
+                      FetchProfileFailedAction;
