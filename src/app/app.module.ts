@@ -74,11 +74,11 @@ registerLocaleData(ko);
       provide: NZ_I18N, 
       useValue: ko_KR 
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptor,
+    //   multi: true
+    // }
   ],
   bootstrap: [AppComponent],
 })
