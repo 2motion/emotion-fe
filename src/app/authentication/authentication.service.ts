@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Http } from '@angular/http';
 import SignUpPayloadModel from './model/sign-up-payload.model';
 import VerifyPayloadModel from './model/verify-payload.model';
 import CreateTokenPayloadModel from './model/create-token-payload.model';
+import * as moment from "moment";
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  public constructor(private readonly http: Http) {}
+  public constructor(private readonly http: HttpClient) {}
 
   public signUp(payload: SignUpPayloadModel) {
     return this.http.post(`${environment.apiEndPoint}/authentication/sign-up`, payload);
@@ -26,4 +27,31 @@ export class AuthenticationService {
   public createToken(payload: CreateTokenPayloadModel) {
     return this.http.post(`${environment.apiEndPoint}/authentication/token`, payload);
   }
+
+  public setSession(token: string, expiresIn: number) {
+    const expiresAt = moment().add(expiresIn, 'second');
+
+    localStorage.setItem('id_token', token);
+    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
+  }
+
+  public isLoggedIn() {
+    return moment().isBefore(this.getExpiration());
+  }
+
+  public logout() {
+    localStorage.removeItem("id_token");
+    localStorage.removeItem("expires_at");
+  }
+
+  public isLoggedOut() {
+    return !this.isLoggedIn();
+  }
+
+  public getExpiration() {
+    const expiration = localStorage.getItem("expires_at");
+    const expiresAt = JSON.parse(expiration);
+
+    return moment(expiresAt);
+  }    
 }

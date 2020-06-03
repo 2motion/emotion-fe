@@ -11,7 +11,7 @@ export class ArticleEffects {
     ofType(ArticleActions.FETCH),
     exhaustMap(() => {
       return this.service.fetch().pipe(
-        map((response) => new ArticleActions.FetchSuccessAction(response.json())),
+        map((data: any) => new ArticleActions.FetchSuccessAction(data)),
         catchError((error) => of(new ArticleActions.FetchFailedAction(error)),
       ));
     }),

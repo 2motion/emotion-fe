@@ -20,8 +20,7 @@ export class AuthenticationEffects {
     ofType(AuthenticationAction.SIGN_UP_ACTION),
     exhaustMap(({payload}) => {
       return this.service.signUp(payload).pipe(
-          map((response) => {
-            const data = response.json();
+          map((data: any) => {
             this.router.navigate(['verify'], {
               queryParams: {
                 verifyId: data.verifyId,
@@ -42,11 +41,9 @@ export class AuthenticationEffects {
     ofType(AuthenticationAction.CREATE_TOKEN_ACTION),
     exhaustMap(({payload}) => {
       return this.service.createToken(payload).pipe(
-          switchMap((response) => {
-            const data = response.json();
+          switchMap((data: any) => {
             this.router.navigate(['/']);
-            localStorage.setItem('accessToken', data.token);
-            localStorage.setItem('accessTokenExpiredAt', data.expiredAt);
+            this.service.setSession(data.token, data.expiredAt);
             return [
               new AuthenticationAction.CreateTokenSuccessAction(data),
               new AuthenticationAction.FetchProfileAction()
@@ -64,8 +61,7 @@ export class AuthenticationEffects {
     ofType(AuthenticationAction.FETCH_PROFILE_ACTION),
     exhaustMap(({payload}) => {
       return this.service.fetchProfile().pipe(
-          map((response) => {
-            const data = response.json();
+          map((data: any) => {
             return new AuthenticationAction.FetchProfileSuccessAction(data)
           }),
           catchError((error) => {

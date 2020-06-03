@@ -1,5 +1,5 @@
 import { registerLocaleData } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import ko from '@angular/common/locales/ko';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -32,6 +32,7 @@ import { HeaderEffects } from './header/effects/header.effects';
 import { AuthenticationEffects } from './authentication/effects/authentication.effects';
 import { WriteModule } from './write/write.module';
 import { ProfileModule } from './profile/profile.module';
+import { AuthInterceptor } from './shared/interceptor/auth.interceptor';
 
 const icons: IconDefinition[] = [ AccountBookFill, AlertOutline, AlertFill ];
 
@@ -42,7 +43,6 @@ registerLocaleData(ko);
     AppComponent,
   ],
   imports: [
-    HttpModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     NzIconModule.forRoot(icons),
     SharedModule,
@@ -69,7 +69,17 @@ registerLocaleData(ko);
     HttpClientModule,
     BrowserAnimationsModule,
   ],
-  providers: [{ provide: NZ_I18N, useValue: ko_KR }],
+  providers: [
+    { 
+      provide: NZ_I18N, 
+      useValue: ko_KR 
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

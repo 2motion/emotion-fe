@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import { environment } from '../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArticleService {
-  public constructor(private readonly http: Http) {}
+  public constructor(private readonly http: HttpClient) {}
 
   public fetch() {
     return this.http.get(`${environment.apiEndPoint}/articles`);
