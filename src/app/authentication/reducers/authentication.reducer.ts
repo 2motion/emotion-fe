@@ -3,12 +3,14 @@ import ProfileModel from '../model/profile.model';
 
 export interface State {
   isLoadingForm: boolean;
-  profile: ProfileModel
+  profile: ProfileModel;
+  isAuthenticated: boolean;
 }
 
 export const initialState: State = {
   isLoadingForm: false,
-  profile: {}
+  profile: {},
+  isAuthenticated: false
 };
 
 export function reducer(state = initialState, action: AuthenticationAction.Actions): State {

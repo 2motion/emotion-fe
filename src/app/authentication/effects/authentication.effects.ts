@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, exhaustMap, catchError } from 'rxjs/operators';
+import { map, exhaustMap, catchError, switchMap } from 'rxjs/operators';
 import * as AuthenticationAction from '../actions/authentication.actions';
 import { of } from 'rxjs';
 import { AuthenticationService } from '../authentication.service';
@@ -42,12 +42,15 @@ export class AuthenticationEffects {
     ofType(AuthenticationAction.CREATE_TOKEN_ACTION),
     exhaustMap(({payload}) => {
       return this.service.createToken(payload).pipe(
-          map((response) => {
+          switchMap((response) => {
             const data = response.json();
             this.router.navigate(['/']);
             localStorage.setItem('accessToken', data.token);
             localStorage.setItem('accessTokenExpiredAt', data.expiredAt);
-            return new AuthenticationAction.CreateTokenSuccessAction(data);
+            return [
+              new AuthenticationAction.CreateTokenSuccessAction(data),
+              new AuthenticationAction.FetchProfileAction()
+            ]
           }),
           catchError((error) => {
             this.notificationService.error('오류', '로그인 중 오류가 발생했습니다.');
@@ -60,15 +63,13 @@ export class AuthenticationEffects {
   public fetchProfile$ = createEffect(() => this.actions$.pipe(
     ofType(AuthenticationAction.FETCH_PROFILE_ACTION),
     exhaustMap(({payload}) => {
-      return this.service.verify(payload).pipe(
-          map(() => {
-            this.router.navigate(['/']);
-            return new AuthenticationAction.VerifySuccessAction();
+      return this.service.fetchProfile().pipe(
+          map((response) => {
+            const data = response.json();
+            return new AuthenticationAction.FetchProfileSuccessAction(data)
           }),
           catchError((error) => {
-            console.log(error);
-            this.notificationService.error('오류', '인증 중 오류가 발생했습니다.');
-            return of(new AuthenticationAction.VerifyFailedAction(error));
+            return of(new AuthenticationAction.FetchProfileFailedAction(error));
           })
         );
     }),

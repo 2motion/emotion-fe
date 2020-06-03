@@ -65,7 +65,7 @@ export class CreateTokenFailedAction implements Action {
 
 export class FetchProfileAction implements Action {
   public readonly type = FETCH_PROFILE_ACTION;
-  public constructor(public payload: SignUpPayloadModel) { }
+  public constructor() { }
 }
 
 export class FetchProfileSuccessAction implements Action {
