@@ -7,8 +7,11 @@
     <section *ngIf="(artciles$ | async)?.length > 0" class="inner-content">
       <ul>
         <li *ngFor="let article of artciles$ | async" [routerLink]="['/p/' + article.id + '/' + article.title]">
-          <div>
-            <img src="https://www.hax0r.info/assets/images/optimized/freeeeeeee.jpg">
+          <div *ngIf="article.images && article.images.length > 0">
+            <img src="{{article.images[0]}}">
+          </div>
+          <div *ngIf="!article.images || article.images.length === 0">
+            <i></i>
           </div>
           <div>
             <h4>
