@@ -6,7 +6,10 @@
                     :p
                 </a>
             </h1>
-            <section class="button-set">
+            <section class="button-set" *ngIf="(isAuthenticated$ | async)">
+                <nz-avatar [ngStyle]="{ 'background-color': '#f56a00' }" [nzText]="(profile$ | async).name" nzSize="large" style="vertical-align: middle;"></nz-avatar>
+            </section>
+            <section class="button-set" *ngIf="!(isAuthenticated$ | async)">
                 <button nz-button nzType="primary" class="login-button" [routerLink]="['/login']">
                     로그인
                 </button>

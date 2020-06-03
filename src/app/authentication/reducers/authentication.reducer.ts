@@ -51,6 +51,14 @@ export function reducer(state = initialState, action: AuthenticationAction.Actio
           profile: action.payload
         }
       }
+    case AuthenticationAction.CREATE_TOKEN_SUCCESS_ACTION:
+    case AuthenticationAction.VERIFY_SUCCESS_ACTION: 
+      return {
+        ...state,
+        ...{
+          isAuthenticated: true
+        }
+      }
     case AuthenticationAction.CREATE_TOKEN_FAILED_ACTION:
     case AuthenticationAction.CREATE_TOKEN_SUCCESS_ACTION:
     case AuthenticationAction.VERIFY_FAILED_ACTION:
