@@ -35,7 +35,12 @@
             </nz-input-group>
           </nz-form-control>
         </nz-form-item>
-        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" class="authenticate-button">로그인</button>
+        <div nz-row class="login-form-margin" class="resend-verify-token">
+          <div nz-col [nzSpan]="12">
+            <a class="login-form-forgot" (click)="resendVerifyToken()">인증번호가 도착하지 않으셨나요?</a>
+          </div>
+        </div>
+        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" class="authenticate-button">인증하기</button>
       </form>
       <form nz-form [formGroup]="validateForm" (ngSubmit)="isLoginRoute ? submitLoginForm() : submitSignUpForm()" *ngIf="isLoginRoute || isSignUpRoute">
         <nz-form-item>

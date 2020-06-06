@@ -77,6 +77,13 @@ export class AuthenticationComponent implements OnInit {
     }));
   }
 
+  public resendVerifyToken() {
+    this.store.dispatch(new AuthenticationActions.ResendVerifyAction({
+      verifyId: this.router.routerState.snapshot.root.queryParams.verifyId,
+      hashKeyPair: this.router.routerState.snapshot.root.queryParams.hashKeyPair,
+    }));
+  }
+
 
   public ngOnInit(): void {
     const parser = document.createElement('a');

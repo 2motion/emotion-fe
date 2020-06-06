@@ -36,7 +36,8 @@ section {
         height: 50px;
       }
       .forgot-password,
-      .already-exists {
+      .already-exists,
+      .resend-verify-token {
         flex-direction: row-reverse;
         > div {
           flex: inherit;

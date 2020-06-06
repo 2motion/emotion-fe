@@ -36,6 +36,13 @@ export function reducer(state = initialState, action: AuthenticationAction.Actio
           isLoadingForm: true
         }
       }
+    case AuthenticationAction.RESEND_VERIFY_ACTION:
+      return {
+        ...state,
+        ...{
+          isLoadingForm: true
+        }
+      }
     case AuthenticationAction.FETCH_PROFILE_ACTION:
     case AuthenticationAction.FETCH_PROFILE_FAILED_ACTION:
       return {
@@ -59,6 +66,8 @@ export function reducer(state = initialState, action: AuthenticationAction.Actio
           isAuthenticated: true
         }
       }
+    case AuthenticationAction.RESEND_VERIFY_SUCCESS_ACTION:
+    case AuthenticationAction.RESEND_VERIFY_FAILED_ACTION:
     case AuthenticationAction.CREATE_TOKEN_FAILED_ACTION:
     case AuthenticationAction.CREATE_TOKEN_SUCCESS_ACTION:
     case AuthenticationAction.VERIFY_FAILED_ACTION:

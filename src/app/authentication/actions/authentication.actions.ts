@@ -4,6 +4,7 @@ import SignUpSuccessPayloadModel from '../model/sign-up-success-payload.model';
 import VerifyPayloadModel from '../model/verify-payload.model';
 import CreateTokenPayloadModel from '../model/create-token-payload.model';
 import ProfileModel from '../model/profile.model';
+import ResendVerifyTokenPayloadModel from '../model/resend-verify-token-payload.model';
 
 export const SIGN_UP_ACTION = '[Authentication] SIGN_UP_ACTION';
 export const SIGN_UP_SUCCESS_ACTION = '[Authentication] SIGN_UP_SUCCESS_ACTION';
@@ -11,6 +12,9 @@ export const SIGN_UP_FAILED_ACTION = '[Authentication] SIGN_UP_FAILED_ACTION';
 export const VERIFY_ACTION = '[Authentication] VERIFY_ACTION';
 export const VERIFY_SUCCESS_ACTION = '[Authentication] VERIFY_SUCCESS_ACTION';
 export const VERIFY_FAILED_ACTION = '[Authentication] VERIFY_FAILED_ACTION';
+export const RESEND_VERIFY_ACTION = '[Authentication] RESEND_VERIFY_ACTION';
+export const RESEND_VERIFY_SUCCESS_ACTION = '[Authentication] RESEND_VERIFY_SUCCESS_ACTION';
+export const RESEND_VERIFY_FAILED_ACTION = '[Authentication] RESEND_VERIFY_FAILED_ACTION';
 export const CREATE_TOKEN_ACTION = '[Authentication] CREATE_TOKEN_ACTION';
 export const CREATE_TOKEN_SUCCESS_ACTION = '[Authentication] CREATE_TOKEN_SUCCESS_ACTION';
 export const CREATE_TOKEN_FAILED_ACTION = '[Authentication] CREATE_TOKEN_FAILED_ACTION';
@@ -45,6 +49,21 @@ export class VerifySuccessAction implements Action {
 
 export class VerifyFailedAction implements Action {
   public readonly type = VERIFY_FAILED_ACTION;
+  public constructor(public error) { }
+}
+
+export class ResendVerifyAction implements Action {
+  public readonly type = RESEND_VERIFY_ACTION;
+  public constructor(public payload: ResendVerifyTokenPayloadModel) { }
+}
+
+export class ResendVerifySuccessAction implements Action {
+  public readonly type = RESEND_VERIFY_SUCCESS_ACTION;
+  public constructor() { }
+}
+
+export class ResendVerifyFailedAction implements Action {
+  public readonly type = RESEND_VERIFY_FAILED_ACTION;
   public constructor(public error) { }
 }
 
@@ -89,4 +108,7 @@ export type Actions = SignUpAction |
                       CreateTokenFailedAction |
                       FetchProfileAction |
                       FetchProfileSuccessAction |
-                      FetchProfileFailedAction;
+                      FetchProfileFailedAction |
+                      ResendVerifyAction |
+                      ResendVerifySuccessAction |
+                      ResendVerifyFailedAction;

@@ -50,12 +50,17 @@ export class AuthenticationEffects {
             ]
           }),
           catchError((error) => {
-            this.notificationService.error('오류', '로그인 중 오류가 발생했습니다.');
+            if (error.status === 401) {
+              this.notificationService.error('오류', '인증되지 않은 이용자 입니다.');
+            } else {
+              this.notificationService.error('오류', '로그인 중 오류가 발생했습니다.');
+            }
             return of(new AuthenticationAction.CreateTokenFailedAction(error));
           })
         );
     }),
   ));
+
 
   public fetchProfile$ = createEffect(() => this.actions$.pipe(
     ofType(AuthenticationAction.FETCH_PROFILE_ACTION),
@@ -66,6 +71,22 @@ export class AuthenticationEffects {
           }),
           catchError((error) => {
             return of(new AuthenticationAction.FetchProfileFailedAction(error));
+          })
+        );
+    }),
+  ));
+
+  public resendVerifyToken$ = createEffect(() => this.actions$.pipe(
+    ofType(AuthenticationAction.RESEND_VERIFY_ACTION),
+    exhaustMap(({payload}) => {
+      return this.service.resendVerifyToken(payload).pipe(
+          map(() => {
+            this.notificationService.success('성공', '인증 코드를 성공적으로 재 발송했습니다.');
+            return new AuthenticationAction.ResendVerifySuccessAction();
+          }),
+          catchError((error) => {
+            this.notificationService.error('오류', '인증코드 재발 송 중 오류가 발생했습니다.');
+            return of(new AuthenticationAction.ResendVerifyFailedAction(error));
           })
         );
     }),

@@ -5,6 +5,7 @@ import VerifyPayloadModel from './model/verify-payload.model';
 import CreateTokenPayloadModel from './model/create-token-payload.model';
 import * as moment from "moment";
 import { HttpClient } from '@angular/common/http';
+import ResendVerifyTokenPayloadModel from './model/resend-verify-token-payload.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,10 @@ export class AuthenticationService {
 
   public verify(payload: VerifyPayloadModel) {
     return this.http.post(`${environment.apiEndPoint}/authentication/verify`, payload);
+  }
+
+  public resendVerifyToken(payload: ResendVerifyTokenPayloadModel) {
+    return this.http.post(`${environment.apiEndPoint}/authentication/resend-verify-code`, payload);
   }
 
   public fetchProfile() {
