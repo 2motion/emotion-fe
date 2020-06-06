@@ -45,3 +45,16 @@ section {
     }
   }
 }
+
+@media (max-width:768px) {
+  section {
+    width: auto;
+    height: auto;
+    margin: auto;
+    > div {
+      &:first-child {
+        display: none;
+      }
+    }
+  }
+}
