@@ -101,7 +101,6 @@ export class AuthenticationEffects {
             return new AuthenticationAction.VerifySuccessAction();
           }),
           catchError((error) => {
-            console.log(error);
             this.notificationService.error('오류', '인증 중 오류가 발생했습니다.');
             return of(new AuthenticationAction.VerifyFailedAction(error));
           })
