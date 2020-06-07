@@ -4,6 +4,16 @@
       <nz-skeleton [nzActive]="true"></nz-skeleton>
       <nz-skeleton [nzActive]="true"></nz-skeleton>
     </section>
+    <section *ngIf="(selectedArticle$ | async)" class="inner-contnet detail">
+      <article>
+        <h1>
+        {{(selectedArticle$ | async).title}}
+        </h1>
+        <p>
+          {{(selectedArticle$ | async).body}}
+        </p>
+      </article>
+    </section>
     <section *ngIf="(artciles$ | async)?.length > 0" class="inner-content">
       <ul>
         <li *ngFor="let article of artciles$ | async" [routerLink]="['/p/' + article.id + '/' + article.title]">
@@ -24,7 +34,7 @@
         </li>
       </ul>
     </section>
-    <section *ngIf="!(isLoadingEntites$ | async) && (artciles$ | async)?.length==0" class="inner-content">
+    <section *ngIf="!(isLoadingEntites$ | async) && (artciles$ | async)?.length==0 &&  (selectedArticle$ | async)?.length==0" class="inner-content">
       <nz-empty>
       </nz-empty>
     </section>

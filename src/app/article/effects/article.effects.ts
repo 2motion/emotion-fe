@@ -17,6 +17,16 @@ export class ArticleEffects {
     }),
   ));
 
+  public $fetchDetail = createEffect(() => this.actions$.pipe(
+    ofType(ArticleActions.FETCH_DETAIL),
+    exhaustMap(({payload}) => {
+      return this.service.fetchById(payload).pipe(
+        map((data: any) => new ArticleActions.FetchDetailSuccessAction(data)),
+        catchError((error) => of(new ArticleActions.FetchDetailFailedAction(error)),
+      ));
+    }),
+  ));
+
   public constructor(
     private readonly actions$: Actions,
     private readonly service: ArticleService,

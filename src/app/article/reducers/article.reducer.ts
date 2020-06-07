@@ -2,12 +2,14 @@ import * as ArticleAction from '../actions/article.actions';
 import ArticleModel from '../model/article.model';
 
 export interface State {
+  selectedEntity: ArticleModel;
   entities: ArticleModel[];
   selectedArticleId: number | null;
   isLoadingEntites: boolean;
 }
 
 export const initialState: State = {
+  selectedEntity: null,
   entities: [],
   selectedArticleId: null,
   isLoadingEntites: true,
@@ -15,6 +17,24 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: ArticleAction.Actions): State {
   switch (action.type) {
+    case ArticleAction.FETCH_DETAIL:
+      return {
+        ...state,
+        isLoadingEntites: true,
+        selectedEntity: null,
+        entities: []
+      }
+    case ArticleAction.FETCH_DETAIL_SUCCESS:
+      return {
+        ...state,
+        selectedEntity: action.payload,
+        isLoadingEntites: false
+      }
+    case ArticleAction.FETCH_DETAIL_FAILED:
+      return {
+        ...state,
+        isLoadingEntites: false
+      }
     case ArticleAction.FETCH:
       return {
         ...state,

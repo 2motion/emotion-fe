@@ -11,4 +11,8 @@ export class ArticleService {
   public fetch() {
     return this.http.get(`${environment.apiEndPoint}/articles`);
   }
+
+  public fetchById(articleId: number) {
+    return this.http.get(`${environment.apiEndPoint}/articles/${articleId}`);
+  }
 }
