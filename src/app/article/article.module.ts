@@ -5,6 +5,8 @@ import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { ArticleComponent } from './article.component';
 import { RouterModule } from '@angular/router';
+import { HeaderModule } from '../header/header.module';
+import { FooterModule } from '../footer/footer.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { RouterModule } from '@angular/router';
     NzLayoutModule,
     NzEmptyModule,
     NzSkeletonModule,
-    RouterModule
+    RouterModule,
+    HeaderModule,
+    FooterModule
   ],
 })
 export class ArticleModule { }

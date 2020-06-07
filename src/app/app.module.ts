@@ -33,6 +33,7 @@ import { AuthenticationEffects } from './authentication/effects/authentication.e
 import { WriteModule } from './write/write.module';
 import { ProfileModule } from './profile/profile.module';
 import { AuthInterceptor } from './shared/interceptor/auth.interceptor';
+import { AuthenticationModule } from './authentication/authentication.module';
 
 const icons: IconDefinition[] = [ AccountBookFill, AlertOutline, AlertFill ];
 
@@ -50,6 +51,7 @@ registerLocaleData(ko);
     HeaderModule,
     FooterModule,
     ArticleModule,
+    AuthenticationModule,
     WriteModule,
     ProfileModule,
     StoreModule.forRoot({

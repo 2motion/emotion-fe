@@ -1,3 +1,6 @@
+<div *ngIf="!(selectedArticle$ | async)">
+  <app-header></app-header>
+</div>
 <nz-layout class="content" id="articles">
   <nz-content>
     <section *ngIf="(isLoadingEntites$ | async)" class="inner-content">
@@ -40,3 +43,6 @@
     </section>
   </nz-content>
 </nz-layout>
+<div *ngIf="!(selectedArticle$ | async)">
+  <app-footer></app-footer>
+</div>

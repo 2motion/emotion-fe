@@ -38,6 +38,7 @@ export function reducer(state = initialState, action: ArticleAction.Actions): St
     case ArticleAction.FETCH:
       return {
         ...state,
+        selectedEntity: null,
         isLoadingEntites: true 
       }
     case ArticleAction.FETCH_SUCCESS:

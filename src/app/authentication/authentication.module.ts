@@ -7,6 +7,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { FooterModule } from '../footer/footer.module';
 
 @NgModule({
   declarations: [AuthenticationComponent],
@@ -17,7 +18,8 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
     NzInputModule,
     ReactiveFormsModule,
     NzSpinModule,
-    NzNotificationModule
+    NzNotificationModule,
+    FooterModule
   ],
   exports: [
     AuthenticationComponent
