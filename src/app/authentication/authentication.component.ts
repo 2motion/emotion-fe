@@ -81,6 +81,7 @@ export class AuthenticationComponent implements OnInit {
     this.store.dispatch(new AuthenticationActions.ResendVerifyAction({
       verifyId: this.router.routerState.snapshot.root.queryParams.verifyId,
       hashKeyPair: this.router.routerState.snapshot.root.queryParams.hashKeyPair,
+
     }));
   }
 

@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { FooterModule } from '../footer/footer.module';
+import { HeaderModule } from '../header/header.module';
 
 @NgModule({
   declarations: [AuthenticationComponent],
@@ -19,7 +20,8 @@ import { FooterModule } from '../footer/footer.module';
     ReactiveFormsModule,
     NzSpinModule,
     NzNotificationModule,
-    FooterModule
+    FooterModule,
+    HeaderModule
   ],
   exports: [
     AuthenticationComponent

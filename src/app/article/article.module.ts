@@ -7,6 +7,7 @@ import { ArticleComponent } from './article.component';
 import { RouterModule } from '@angular/router';
 import { HeaderModule } from '../header/header.module';
 import { FooterModule } from '../footer/footer.module';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FooterModule } from '../footer/footer.module';
     NzSkeletonModule,
     RouterModule,
     HeaderModule,
-    FooterModule
+    FooterModule,
+    NzIconModule
   ],
 })
 export class ArticleModule { }

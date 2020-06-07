@@ -2,6 +2,7 @@
   display: flex;
 }
 article {
+  position: relative;
   h1 {
     font-size: 48px;
     margin-bottom: 2rem;
@@ -9,6 +10,12 @@ article {
   }
   p {
     font-size: 18px;
+  }
+  i {
+    position: absolute;
+    right: 0;
+    top: 15px;
+    font-size: 30px;
   }
 }
 ul {

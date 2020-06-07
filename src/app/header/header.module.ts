@@ -15,7 +15,6 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
     NzButtonModule,
     NzLayoutModule,
     NzModalModule,
-    AuthenticationModule,
     RouterModule,
     NzAvatarModule
   ],
