@@ -88,6 +88,10 @@ ul {
 }
 
 @media (max-width: 767px) {
+  article {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
   ul {
     li {
       width: calc(100% - 2rem);
