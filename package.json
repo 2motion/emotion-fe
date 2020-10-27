@@ -76,7 +76,7 @@
     "serverless-apigw-binary": "0.4.4",
     "serverless-domain-manager": "4.0.1",
     "serverless-offline": "5.12.1",
-    "ts-loader": "7.0.4",
+    "ts-loader": "7.0.5",
     "ts-node": "8.3.0",
     "tslint": "6.1.2",
     "typescript": "3.8.3",
